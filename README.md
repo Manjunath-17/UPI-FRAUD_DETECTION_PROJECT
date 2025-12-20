@@ -6,8 +6,9 @@ This project presents a machine learning–based fraud detection system that cla
 
 The system uses multiple supervised machine learning algorithms and selects the best-performing model for real-time fraud prediction through a web interface.
 
-🎯 Objectives
 
+
+🎯 Objectives
 Detect fraudulent UPI transactions using machine learning
 
 Analyse transaction behaviour and patterns
@@ -18,8 +19,9 @@ Provide real-time fraud prediction through a web interface
 
 Enhance digital payment security and user trust
 
-🧠 Machine Learning Models Used
 
+
+🧠 Machine Learning Models Used
 Random Forest Classifier
 
 Logistic Regression
@@ -30,8 +32,9 @@ Support Vector Machine (SVM)
 
 📌 Final Model Selected: Random Forest (based on performance comparison)
 
-📊 Dataset Description
 
+
+📊 Dataset Description
 The project uses a synthetic UPI transaction dataset containing features such as:
 
 Transaction amount
@@ -44,8 +47,9 @@ Transaction-related attributes
 
 Fraud label (0 = Genuine, 1 = Fraud)
 
-⚙️ Methodology
 
+
+⚙️ Methodology
 Data collection and preprocessing
 
 Feature selection and encoding
@@ -58,8 +62,9 @@ Performance comparison using metrics
 
 Deployment using Flask web application
 
-📈 Evaluation Metrics
 
+
+📈 Evaluation Metrics
 The models are evaluated using:
 
 Accuracy
@@ -74,8 +79,9 @@ Confusion Matrix
 
 Random Forest achieved the best balance between precision and recall, making it suitable for deployment.
 
-🖥️ System Architecture
 
+
+🖥️ System Architecture
 Machine learning model trained using Python and Scikit-learn
 
 Flask backend for model prediction
@@ -84,11 +90,12 @@ HTML & CSS frontend for user interaction
 
 Real-time prediction of transaction status (Fraud / Genuine)
 
-🌐 Web Interface Features
 
+
+🌐 Web Interface Features
 User-friendly transaction input form
 
-Real-time fraud prediction
+Fraud prediction
 
 Clear visual indication of results:
 
@@ -96,13 +103,16 @@ Clear visual indication of results:
 
 ✅ Genuine Transaction
 
-🛠️ Technologies Used
 
+
+🛠️ Technologies Used
 Programming Language: Python
 Framework: Flask
 ML Library: Scikit-learn
 Frontend: HTML, CSS
 Tools: VS Code, GitHub
+
+
 
 🚀 How to Run the Project
 
@@ -125,8 +135,9 @@ Open browser and go to:
 
 http://127.0.0.1:5000/
 
-🔮 Future Scope
 
+
+🔮 Future Scope
 Integration with real-time UPI payment APIs
 
 Use of deep learning models (LSTM, CNN)
@@ -137,12 +148,14 @@ Deployment on cloud platforms
 
 Training on real-world large-scale datasets
 
-📄 Project Status
 
+
+📄 Project Status
 ✅ Completed
 🎓 Academic Final Year Project
 
-👨‍💻 Author
 
+
+👨‍💻 Author
 Manjunath Khot
 Final Year Project – UPI Fraud Detection Using Machine Learning
