@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>UPI Fraud Detection System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Link static CSS in Flask -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="bg-orbit"></div>
+    <div class="bg-orbit orbit-2"></div>
+
+    <header class="top-bar">
+        <div class="logo-area">
+            <div class="logo-dot"></div>
+            <span class="logo-text">UPI<span>Guard</span></span>
+        </div>
+        <div class="status-pill">
+            <span class="status-dot"></span>
+            Model: Active
+        </div>
+    </header>
+
+    <main class="main-layout">
+        <!-- LEFT: Hero / Info -->
+        <section class="hero-panel">
+            <div class="hero-chip">Real-Time UPI Fraud Analysis</div>
+            <h1>
+                Secure every<br>
+                <span>Digital Transaction</span>
+            </h1>
+            <p class="hero-subtitle">
+                Our ML-powered engine inspects transaction patterns, time, and risk features to flag
+                suspicious UPI activity before it harms users.
+            </p>
+
+            <div class="stats-row">
+                <div class="stat-card">
+                    <span class="stat-label">Detection Accuracy</span>
+                    <span class="stat-value">91.0%</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label">Avg. Response</span>
+                    <span class="stat-value">1s</span>
+                </div>
+            </div>
+
+            <div class="pill-row">
+                <div class="pill">🔐 Secure</div>
+                <div class="pill">⚙️ ML-Driven</div>
+                <div class="pill">📊 Real-Time</div>
+            </div>
+
+            <!-- Optional futuristic PNG image (you can replace src with your own PNG) -->
+            <div class="hero-illustration">
+                <img src="https://cdn-icons-png.flaticon.com/512/8146/8146003.png"
+                     alt="Security Illustration">
+            </div>
+        </section>
+
+        <!-- RIGHT: Form / Prediction -->
+        <section class="panel-card">
+            <div class="panel-header">
+                <div>
+                    <h2>Transaction Risk Scanner</h2>
+                    <p>Feed transaction details to evaluate fraud probability.</p>
+                </div>
+                <div class="scan-indicator">
+                    <span class="ping"></span>
+                    Live
+                </div>
+            </div>
+
+            <form action="/predict" method="post" class="fraud-form">
+                <div class="grid-2">
+                    <div class="form-field">
+                        <label for="trans_hour">Transaction Hour</label>
+                        <div class="input-shell icon-clock">
+                            <input type="number" id="trans_hour" name="trans_hour"
+                                   min="0" max="23" required placeholder="0 - 23">
+                        </div>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="trans_day">Transaction Day</label>
+                        <div class="input-shell icon-calendar">
+                            <input type="number" id="trans_day" name="trans_day"
+                                   min="1" max="31" required placeholder="1 - 31">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid-2">
+                    <div class="form-field">
+                        <label for="trans_month">Transaction Month</label>
+                        <div class="input-shell icon-calendar">
+                            <input type="number" id="trans_month" name="trans_month"
+                                   min="1" max="12" required placeholder="1 - 12">
+                        </div>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="trans_year">Transaction Year</label>
+                        <div class="input-shell icon-year">
+                            <input type="number" id="trans_year" name="trans_year"
+                                   min="2017" max="2025" required placeholder="e.g. 2024">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-field">
+                    <label for="trans_amount">Transaction Amount (₹)</label>
+                    <div class="input-shell icon-rupee">
+                        <input type="number" step="0.01" id="trans_amount" name="trans_amount"
+                               min="1" required placeholder="Enter amount">
+                    </div>
+                </div>
+
+                <div class="form-field">
+                    <label for="upi_number">UPI Number</label>
+                    <div class="input-shell icon-upi">
+                        <input type="text" id="upi_number" name="upi_number" required
+                            placeholder="e.g. 9876543210"
+                            minlength="10"
+                            maxlength="10"
+                            pattern="\d{10}"
+                            inputmode="numeric"
+                            title="Please enter a 10-digit UPI number (digits only).">
+                    </div>
+                </div>
+
+                <button type="submit" class="primary-btn">
+                    <span>Run Fraud Analysis</span>
+                    <div class="btn-glow"></div>
+                </button>
+            </form>
+
+            {% if result is defined %}
+                <div class="result-wrapper">
+                    {% if result == "Fraud" %}
+                        <div class="result-card fraud">
+                            <div class="result-tag danger">High Risk</div>
+                            <h3>⚠️ Fraud Detected</h3>
+                            <p>
+                                This transaction shows anomalous behavior patterns.
+                                Verify sender, receiver, and transaction purpose urgently.
+                            </p>
+                        </div>
+                    {% elif result == "Not Fraud" %}
+                        <div class="result-card genuine">
+                            <div class="result-tag safe">Low Risk</div>
+                            <h3>✅ Transaction Appears Genuine</h3>
+                            <p>
+                                No strong fraudulent indicators were detected for this transaction.
+                                You may proceed, but always stay alert.
+                            </p>
+                        </div>
+                    {% endif %}
+                </div>
+            {% endif %}
+        </section>
+    </main>
+
+    <footer class="footer">
+        <span>© {{ 2025 }} UPI Fraud Detection System · Academic Project</span>
+        <span class="footer-dot"></span>
+        <span>Powered by Machine Learning</span>
+    </footer>
+
+    <!-- Date & time validation script (no UI change) -->
+    <script>
+        document.querySelector('.fraud-form').addEventListener('submit', function (event) {
+            const day   = parseInt(document.getElementById('trans_day').value, 10);
+            const month = parseInt(document.getElementById('trans_month').value, 10);
+            const year  = parseInt(document.getElementById('trans_year').value, 10);
+            const hour  = parseInt(document.getElementById('trans_hour').value, 10);
+
+            // Let required, min, max handle empty/invalid basics
+            if (isNaN(day) || isNaN(month) || isNaN(year) || isNaN(hour)) {
+                return;
+            }
+
+            // Build the selected date (JS months are 0-based)
+            const selectedDate = new Date(year, month - 1, day);
+            const isValidDate =
+                selectedDate.getFullYear() === year &&
+                selectedDate.getMonth() === month - 1 &&
+                selectedDate.getDate() === day;
+
+            if (!isValidDate) {
+                event.preventDefault();
+                alert("❌ Invalid date! Please enter a valid calendar date (e.g., Feb 30 or Nov 31 are not allowed).");
+                return;
+            }
+
+            // Normalize to midnight for date-only comparison
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            const dateOnly = new Date(year, month - 1, day);
+            dateOnly.setHours(0, 0, 0, 0);
+
+            // Block future dates
+            if (dateOnly > today) {
+                event.preventDefault();
+                alert("⚠️ Future dates are not allowed. Please enter today's date or a past date.");
+                return;
+            }
+
+            // If the date is today, restrict future hours
+            const now = new Date();
+            if (dateOnly.getTime() === today.getTime() && hour > now.getHours()) {
+                event.preventDefault();
+                alert("⏰ You cannot enter a future time. The hour cannot be greater than the current hour.");
+                return;
+            }
+        });
+    </script>
+</body>
+</html>
