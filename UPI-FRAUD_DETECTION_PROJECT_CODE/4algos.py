@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 import joblib
 
 # Load preprocessed data
-data = pd.read_csv(r"C:\Users\manjunath s khot\Documents\2KD22CS049\UPI-FRAUD_DETECTION_PROJECT_CODE_final\cleaned_upi_fraud_dataset.csv")
+data = pd.read_csv(r"C:\Users\manjunath s khot\Documents\2KD22CS049\UPI-FRAUD_DETECTION_PROJECT\cleaned_upi_fraud_dataset.csv")
 
 X = data.drop(columns=['fraud_risk'])
 y = data['fraud_risk']
