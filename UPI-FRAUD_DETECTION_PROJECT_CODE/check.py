@@ -6,7 +6,7 @@ from sklearn.ensemble import RandomForestClassifier
 import joblib
 
 # Load dataset
-data = pd.read_csv(r"C:\Users\manjunath s khot\Documents\2KD22CS049\UPI-FRAUD_DETECTION_PROJECT_CODE_final\cleaned_upi_fraud_dataset.csv")
+data = pd.read_csv(r"C:\Users\manjunath s khot\Documents\2KD22CS049\UPI-FRAUD_DETECTION_PROJECT\cleaned_upi_fraud_dataset.csv")
 
 # Convert 'upi_number' to string (in case it’s numeric)
 data["upi_number"] = data["upi_number"].astype(str)
